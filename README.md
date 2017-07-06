@@ -1,19 +1,11 @@
 # Sup
 
-**TODO: Add description**
+cutoff_time: time after which we kill all processes
+response_time: time after which we send a response
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `supervised_tasks_with_timeout` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [{:supervised_tasks_with_timeout, "~> 0.1.0"}]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/supervised_tasks_with_timeout](https://hexdocs.pm/supervised_tasks_with_timeout).
-
+  D1. Spawn n processes where n is number of suppliers
+    and these n processes can spawn more processes
+  D2. Kill all of them after cutoff time: 5 seconds
+  D3. Respond earlier than 5 seconds if we are done earlier
+  D4. Respond in 'response_time' if our processes have not finished in 'response_time'
+    and kill all processes after 'cutoff_time'
