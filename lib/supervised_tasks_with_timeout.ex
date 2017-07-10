@@ -70,8 +70,8 @@ defmodule Sup do
   defp notify_caller(%State{calling_pid: calling_pid, wait_ref: wait_ref,
     kill_timer: kill_timer, soft_timer: soft_timer}) do
     send(calling_pid, {:ok, wait_ref})
-    :timer.cancel(kill_timer)
-    :timer.cancel(soft_timer)
+    Process.cancel_timer(kill_timer)
+    Process.cancel_timer(soft_timer)
   end
 
   defp wait_for_tasks(%State{sup_pid: sup_pid}, []), do: Supervisor.stop(sup_pid)
