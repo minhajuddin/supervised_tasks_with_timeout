@@ -3,10 +3,8 @@ defmodule SupTest do
 
   defmodule Worker do
     def work(units, caller_pid, message) do
-      IO.puts "working"
       :timer.sleep(units)
       send(caller_pid, message)
-      IO.puts "finished working"
     end
   end
 
